@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Música</title>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+
+<div layout:fragment="conteudo">
+
+    <h1>Cadastro de Música</h1>
+
+    <form th:action="@{/musica/cadastrar}" th:object="${musica}" method="post">
+        <div class="mb-3">
+            <label for="nome" class="form-label">Nome da Música</label>
+            <input type="text" class="form-control" id="nome" th:field="*{nome}" placeholder="Informe o nome da música">
+        </div>
+        <div class="mb-3">
+            <label for="artista" class="form-label">Artista</label>
+            <input type="text" class="form-control" id="artista" th:field="*{artista}" placeholder="Informe o nome do artista">
+        </div>
+        <div class="mb-3">
+            <label for="lancamento" class="form-label">Data de Lançamento</label>
+            <input type="date" class="form-control" id="lancamento" th:field="*{lancamento}" placeholder="Informe a data de lançamento">
+        </div>
+        <div class="mb-3">
+            <label for="album" class="form-label">Álbum</label>
+            <input type="text" class="form-control" id="album" th:field="*{album}" placeholder="Informe o nome do álbum">
+        </div>
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+    </form>
+</div>
+
+<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

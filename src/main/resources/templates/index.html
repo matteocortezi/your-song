@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+<div layout:fragment="conteudo">
+    <h1>Sistema de cadastro de músicas utilizando Spring</h1>
+
+    <a th:href="@{/musica/cadastrar}" class="btn btn-primary">Cadastrar música</a>
+    <a th:href="@{/musica/listar}" class="btn btn-secondary">Exibir músicas</a>
+</div>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

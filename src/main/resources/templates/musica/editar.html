@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <title>Editar Música</title>
+</head>
+<body>
+<div layout:fragment="conteudo">
+    <h1>Editar música</h1>
+    <form th:action="@{/musica/editar}" th:object="${musica}" method="post">
+        <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+            <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+        </div>
+        <input th:field="*{id}" type="hidden"/>
+
+        <div class="mb-3">
+            <label class="form-label">Nome</label>
+            <input class="form-control" th:field="*{nome}" type="text" id="nome" placeholder="Informe o nome da música">
+            <p th:if="${#fields.hasErrors('nome')}" class="text text-danger" th:errors="*{nome}"></p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Artista</label>
+            <input class="form-control" th:field="*{artista}" type="text" id="artista" placeholder="Informe o nome do artista">
+            <p th:if="${#fields.hasErrors('artista')}" class="text text-danger" th:errors="*{artista}"></p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Data de Lançamento</label>
+            <input class="form-control" th:field="*{lancamento}" type="text" id="lancamento" placeholder="Informe a data de lançamento">
+            <p th:if="${#fields.hasErrors('lancamento')}" class="text text-danger" th:errors="*{lancamento}"></p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Álbum</label>
+            <input class="form-control" th:field="*{album}" type="text" id="album" placeholder="Informe o nome do álbum">
+            <p th:if="${#fields.hasErrors('album')}" class="text text-danger" th:errors="*{album}"></p>
+        </div>
+
+        <button class="btn btn-success">Salvar</button>
+
+        <br>
+        <p th:text="${msg}"></p>
+    </form>
+</div>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

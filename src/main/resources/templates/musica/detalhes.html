@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Detalhes de ' + ${musica.nome}">Detalhes da Música</title>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+<div layout:fragment="conteudo" class="container mt-4">
+    <h1 th:text="${musica.nome}">Nome da Música</h1>
+    <p><strong>Artista:</strong> <span th:text="${musica.artista}"></span></p>
+    <p><strong>Data de Lançamento:</strong> <span th:text="${#temporals.format(musica.lancamento, 'dd/MM/yyyy')}"></span></p>
+    <p><strong>Álbum:</strong> <span th:text="${musica.album}"></span></p>
+    <a th:href="@{/musica/listar}" class="btn btn-secondary">Voltar para a lista de músicas</a>
+</div>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

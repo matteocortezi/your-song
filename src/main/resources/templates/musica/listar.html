@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <title>Listar Músicas</title>
+</head>
+<body>
+<div layout:fragment="conteudo">
+    <h1>Músicas</h1>
+    <div class="alert alert-success"
+         th:if="!${#strings.isEmpty(mensagem)}" th:text="${mensagem}">
+    </div>
+    <table class="table">
+        <tr>
+            <th>Nome</th>
+            <th>Artista</th>
+            <th>Data de Lançamento</th>
+            <th>Álbum</th>
+            <th>Ações</th>
+        </tr>
+        <tr th:each="musica:${musicas}">
+            <td th:text="${musica.nome}"></td>
+            <td th:text="${musica.artista}"></td>
+            <td th:text="${#temporals.format(musica.lancamento, 'dd/MM/yyyy')}"></td>
+            <td th:text="${musica.album}"></td>
+            <td>
+                <a th:href="@{/musica/detalhes/}+${musica.id}" class="btn btn-outline-success m-2">Ver Detalhes</a>
+                <a th:href="@{/musica/editar/}+${musica.id}" class="btn btn-outline-primary m-2">Editar</a>
+
+                <button th:onclick="|musicaId.value = ${musica.id}|" type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Remover
+                </button>
+            </td>
+        </tr>
+    </table>
+    <a th:href="@{/musica/cadastrar}" class="btn btn-primary">Cadastrar</a>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirmação</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Confirma a exclusão da música?
+                </div>
+                <div class="modal-footer">
+                    <form th:action="@{/musica/remover}" method="post">
+                        <input type="hidden" name="id" id="musicaId"/>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                        <button type="submit" class="btn btn-danger">Sim</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
